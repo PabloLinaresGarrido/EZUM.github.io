@@ -117,7 +117,7 @@ addWalletButton.addEventListener('click', e => {
   }
 
   validateAddress(walletAddress).then(() => {
-    console.log('Address válido');
+   
     const walletName = walletId;
     addWalletToList(walletAddress, walletName);
     saveWallet(walletAddress, walletName)
@@ -271,8 +271,7 @@ async function sendMoney(e) {
   const toAddressName = toselectedOption.text;
 
 
-console.log(toAddressName);
-console.log(fromAddressName);
+
 
 
   const toAddress = toWalletSelect.value;
@@ -282,7 +281,7 @@ console.log(fromAddressName);
   // Desencriptar la semilla antes de usarla
   const decryptedWallet = JSON.parse(localStorage.getItem('wallets2')).find(wallet => wallet.address === encryptedFromAddress);
   const fromAddress = decryptSeed(decryptedWallet.address);
-  console.log(`Enviando ${amount} desde ${fromAddress} a ${toAddress}`);
+  
   // Hacer lo que sea necesario con toAddress y amount
 
 
@@ -310,10 +309,9 @@ console.log(fromAddressName);
       privateKey = wallet.getPrivateKey();
       var publicKey = util.privateToPublic(privateKey);
       address_sender = '0x' + util.pubToAddress(publicKey).toString('hex');
-      console.log(1, privateKey);
-      console.log(2, address_sender);
+     
       checksumAddress = web3.utils.toChecksumAddress(address_sender);
-      console.log(3,`Checksum address: ${checksumAddress}`);
+
   
       // Clave privada de la cuenta emisora (debe ser manejada con precaución)
       privateKey = Buffer.from(privateKey, 'hex');
@@ -343,8 +341,7 @@ console.log(fromAddressName);
       var value2 = web3.utils.fromWei(value, 'ether');
       
 
-      console.log(balance);
-      console.log(value2);
+    
    
 
 
@@ -386,9 +383,7 @@ console.log(fromAddressName);
       // Enviar la transacción
       const receipt = await web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'));
   
-      // Imprimir el hash de la transacción
-      console.log('Transacción enviada: ', receipt.transactionHash);
-      // Crear un nuevo elemento li para la transacción
+  
 
 
 
@@ -471,7 +466,7 @@ function cargarListaDeTransacciones() {
     button.textContent = 'Ver transacción en Etherscan';
     button.addEventListener('click', () => {
       window.open(`${transaccion.hash}`, '_blank');
-      console.log(`${transaccion.hash}`);
+    
     });
     li.textContent = `${transaccion.de} envió ${transaccion.valor}ETH a ${transaccion.para},  Hora: ${transaccion.hora} Día: ${transaccion.date} `;
     li.appendChild(button);
